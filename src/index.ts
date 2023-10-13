@@ -7,7 +7,7 @@ async function run() {
   assert(GITHUB_TOKEN, "Environment GITHUB_TOKEN is required");
 
   const sourceTag = core.getInput("source_tag", { required: true });
-  const escapeBreak = core.getInput("escape_break") || "\\n";
+  const escapeBreak = core.getInput("escape_break");
 
   const { owner, repo } = github.context.repo;
   const client = github.getOctokit(GITHUB_TOKEN);
