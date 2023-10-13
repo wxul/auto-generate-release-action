@@ -1,0 +1,20 @@
+name: 'Auto Generate Release Changelog by Tag'
+description: 'Auto Generate Release Changelog by Tag'
+author: wxul
+inputs:
+  source_tag:
+    description: Source Tag
+    default: English
+    required: true
+
+  target_tag:
+    description: Target Tag
+    required: false
+
+outputs:
+  release_note:
+    description: Release note markdown
+
+runs:
+  using: 'node16'
+  main: 'lib/index.js'
