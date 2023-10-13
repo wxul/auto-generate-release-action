@@ -1,12 +1,13 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { assert, parseReleaseNote } from "./utils";
+import { assert, escapeBreakLine, parseReleaseNote } from "./utils";
 
 async function run() {
   const GITHUB_TOKEN = process.env["GITHUB_TOKEN"];
   assert(GITHUB_TOKEN, "Environment GITHUB_TOKEN is required");
 
   const sourceTag = core.getInput("source_tag", { required: true });
+  const escapeBreak = core.getInput("escape_break");
 
   const { owner, repo } = github.context.repo;
   const client = github.getOctokit(GITHUB_TOKEN);
@@ -17,9 +18,12 @@ async function run() {
     tag_name: sourceTag,
   });
   const notes = response.data.body;
-  const parsedNotes = parseReleaseNote(notes, { owner, repo });
+  let parsedNotes = parseReleaseNote(notes, { owner, repo });
 
-  console.log("response", notes, parsedNotes);
+  if (escapeBreak) {
+    parsedNotes = escapeBreakLine(parsedNotes, escapeBreak);
+  }
+  console.log(parsedNotes);
 
   core.setOutput("release_note", parsedNotes);
 }

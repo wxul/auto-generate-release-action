@@ -23,5 +23,14 @@ export function parseReleaseNote(
     })
     .replace(regCompare, (source, $1) => {
       return `[#${$1}](${source})`;
-    });
+    })
+    .replace(/\n+/g, "\n")
+    .split(/\n/)
+    .slice(1)
+    .join("\n")
+    .trim();
+}
+
+export function escapeBreakLine(content: string, replace?: string) {
+  return content.replace(/\n/g, replace);
 }

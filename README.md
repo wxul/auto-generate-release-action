@@ -32,5 +32,5 @@ jobs:
         with:
           source_tag: 'v1.0.1' ## current tag
       - name: Echo
-        run: echo ${{ steps.release_generate.outputs.release_note }} ## show output
+        run: echo "${{ steps.release_generate.outputs.release_note }}" ## show output
 ```
