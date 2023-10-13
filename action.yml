@@ -7,8 +7,8 @@ inputs:
     default: English
     required: true
 
-  target_tag:
-    description: Target Tag
+  escape_break:
+    description: Escape break
     required: false
 
 outputs:

@@ -25,3 +25,7 @@ export function parseReleaseNote(
       return `[#${$1}](${source})`;
     });
 }
+
+export function escapeBreakLine(content: string, replace?: string) {
+  return content.replace(/\n/g, replace);
+}
