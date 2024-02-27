@@ -11,6 +11,10 @@ inputs:
     description: Escape break
     required: false
 
+  prefix:
+    description: Tag prefix, for searching previous tag
+    required: false
+
 outputs:
   release_note:
     description: Release note markdown
