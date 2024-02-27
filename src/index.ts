@@ -7,8 +7,7 @@ async function run() {
   const GITHUB_TOKEN = "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";
   assert(GITHUB_TOKEN, "Environment GITHUB_TOKEN is required");
 
-  // const sourceTag = core.getInput("source_tag", { required: true });
-  const sourceTag = "v4.1.0-2023.10.13.12.19.25";
+  const sourceTag = core.getInput("source_tag", { required: true });
   const escapeBreak = core.getInput("escape_break");
 
   // const { owner, repo } = github.context.repo;
