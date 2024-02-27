@@ -23,9 +23,9 @@ async function run() {
         repo,
         per_page: 50,
       });
-      const findRelease = releases.data.find((rl) =>
-        rl.tag_name.startsWith(prefix)
-      );
+      const findRelease = releases.data
+        .sort((a, b) => +new Date(b.published_at) - +new Date(a.published_at))
+        .find((rl) => rl.tag_name.startsWith(prefix));
       if (findRelease) {
         prevTag = findRelease.tag_name;
       }
