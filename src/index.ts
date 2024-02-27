@@ -13,8 +13,7 @@ async function run() {
 
   let prevTag = "";
 
-  // const { owner, repo } = github.context.repo;
-  const { owner, repo } = { owner: "surreal-ai", repo: "pacific" };
+  const { owner, repo } = github.context.repo;
   const client = github.getOctokit(GITHUB_TOKEN);
 
   if (prefix) {
