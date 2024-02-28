@@ -16,6 +16,7 @@ async function run() {
   const client = github.getOctokit(GITHUB_TOKEN);
 
   if (prefix) {
+    core.info(`Find previous release with prefix: ${prefix}`);
     try {
       const releases = await client.rest.repos.listReleases({
         owner,
@@ -26,6 +27,7 @@ async function run() {
         .sort((a, b) => +new Date(b.published_at) - +new Date(a.published_at))
         .find((rl) => rl.tag_name.startsWith(prefix));
       if (findRelease) {
+        core.info(`Found previous release: ${findRelease.tag_name}`);
         prevTag = findRelease.tag_name;
       }
     } catch (error) {}
@@ -43,7 +45,7 @@ async function run() {
   if (escapeBreak) {
     parsedNotes = escapeBreakLine(parsedNotes, escapeBreak);
   }
-  console.log(parsedNotes);
+  core.info("Release note: " + parsedNotes);
 
   core.setOutput("release_note", parsedNotes);
 }
