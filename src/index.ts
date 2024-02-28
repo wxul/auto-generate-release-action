@@ -3,8 +3,7 @@ import * as github from "@actions/github";
 import { assert, escapeBreakLine, parseReleaseNote } from "./utils";
 
 async function run() {
-  // const GITHUB_TOKEN = process.env["GITHUB_TOKEN"];
-  const GITHUB_TOKEN = "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";
+  const GITHUB_TOKEN = process.env["GITHUB_TOKEN"];
   assert(GITHUB_TOKEN, "Environment GITHUB_TOKEN is required");
 
   const sourceTag = core.getInput("source_tag", { required: true });
